@@ -10,8 +10,6 @@ function App() {
   const [awayScore, setAwayScore] = useState(20);
   const [quarter, setQuarter] = useState(1);
 
-  const [timer, setTimer] = useState("15:00");
-
   const scoreHandler = (name, amount) => {
     if (name === "home") return setHomeScore(homeScore + amount);
     else if (name === "away") return setAwayScore(awayScore + amount);
@@ -34,7 +32,7 @@ function App() {
 
             <div className="home__score">{homeScore}</div>
           </div>
-          <div className="timer">{timer}</div>
+          <div className="timer">00:03</div>
           <div className="away">
             <h2 className="away__name">Tigers</h2>
             <div className="away__score">{awayScore}</div>
