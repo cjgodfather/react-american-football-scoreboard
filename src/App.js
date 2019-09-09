@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import BottomRow from "./BottomRow";
+import Button from "./Button";
 
 function App() {
   //TODO: STEP 2 - Establish your applictaion's state with some useState hooks.  You'll need one for the home score and another for the away score.
@@ -30,32 +31,52 @@ function App() {
       <section className="buttons">
         <div className="homeButtons">
           {/* TODO STEP 4 - Now we need to attach our state setter functions to click listeners. */}
-          <button
+          {/* <button
             onClick={() => setHomeScore(homeScore + 7)}
             className="homeButtons__touchdown"
           >
             Home Touchdown
-          </button>
-          <button
+          </button> */}
+          <Button
+            cls="homeButtons__touchdown"
+            clickHandler={() => setHomeScore(homeScore + 7)}
+            btnName="Home Touchdown"
+          />
+          {/* <button
             onClick={() => setHomeScore(homeScore + 3)}
             className="homeButtons__fieldGoal"
           >
             Home Field Goal
-          </button>
+          </button> */}
+          <Button
+            cls="homeButtons__fieldGoal"
+            clickHandler={() => setHomeScore(homeScore + 3)}
+            btnName="Home Field Goal"
+          />
         </div>
         <div className="awayButtons">
-          <button
+          {/* <button
             onClick={() => setAwayScore(awayScore + 7)}
             className="awayButtons__touchdown"
           >
             Away Touchdown
-          </button>
-          <button
+          </button> */}
+          <Button
+            cls="awayButtons__touchdown"
+            clickHandler={() => setAwayScore(awayScore + 7)}
+            btnName="Away Touchdown"
+          />
+          {/* <button
             onClick={() => setAwayScore(awayScore + 3)}
             className="awayButtons__fieldGoal"
           >
             Away Field Goal
-          </button>
+          </button> */}
+          <Button
+            cls="awayButtons__fieldGoal"
+            clickHandler={() => setAwayScore(awayScore + 3)}
+            btnName="Away Field Goal"
+          />
         </div>
       </section>
     </div>
