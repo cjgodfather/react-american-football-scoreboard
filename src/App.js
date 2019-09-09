@@ -1,5 +1,5 @@
 //TODO: STEP 1 - Import the useState hook.
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import BottomRow from "./BottomRow";
 import Button from "./Button";
@@ -8,6 +8,20 @@ function App() {
   //TODO: STEP 2 - Establish your applictaion's state with some useState hooks.  You'll need one for the home score and another for the away score.
   const [homeScore, setHomeScore] = useState(12);
   const [awayScore, setAwayScore] = useState(20);
+  const [quarter, setQuarter] = useState(1);
+
+  const [timer, setTimer] = useState("15:00");
+
+  const scoreHandler = (name, amount) => {
+    if (name === "home") return setHomeScore(homeScore + amount);
+    else if (name === "away") return setAwayScore(awayScore + amount);
+    return;
+  };
+
+  const quarterHandler = () => {
+    if (quarter >= 4) return setQuarter(1);
+    else return setQuarter(quarter + 1);
+  };
 
   return (
     <div className="container">
@@ -20,13 +34,13 @@ function App() {
 
             <div className="home__score">{homeScore}</div>
           </div>
-          <div className="timer">00:03</div>
+          <div className="timer">{timer}</div>
           <div className="away">
             <h2 className="away__name">Tigers</h2>
             <div className="away__score">{awayScore}</div>
           </div>
         </div>
-        <BottomRow />
+        <BottomRow currentQuarter={quarter} />
       </section>
       <section className="buttons">
         <div className="homeButtons">
@@ -39,7 +53,7 @@ function App() {
           </button> */}
           <Button
             cls="homeButtons__touchdown"
-            clickHandler={() => setHomeScore(homeScore + 7)}
+            clickHandler={() => scoreHandler("home", 7)}
             btnName="Home Touchdown"
           />
           {/* <button
@@ -50,7 +64,7 @@ function App() {
           </button> */}
           <Button
             cls="homeButtons__fieldGoal"
-            clickHandler={() => setHomeScore(homeScore + 3)}
+            clickHandler={() => scoreHandler("home", 3)}
             btnName="Home Field Goal"
           />
         </div>
@@ -63,7 +77,7 @@ function App() {
           </button> */}
           <Button
             cls="awayButtons__touchdown"
-            clickHandler={() => setAwayScore(awayScore + 7)}
+            clickHandler={() => scoreHandler("away", 7)}
             btnName="Away Touchdown"
           />
           {/* <button
@@ -74,10 +88,15 @@ function App() {
           </button> */}
           <Button
             cls="awayButtons__fieldGoal"
-            clickHandler={() => setAwayScore(awayScore + 3)}
+            clickHandler={() => scoreHandler("away", 3)}
             btnName="Away Field Goal"
           />
         </div>
+        <Button
+          cls="awayButtons__fieldGoal"
+          clickHandler={() => quarterHandler()}
+          btnName="change quarter"
+        />
       </section>
     </div>
   );
